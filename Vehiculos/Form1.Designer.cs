@@ -43,6 +43,7 @@
             this.buttonCargar = new System.Windows.Forms.Button();
             this.buttonIngresar = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -150,7 +151,7 @@
             // 
             // buttonCargar
             // 
-            this.buttonCargar.Location = new System.Drawing.Point(529, 565);
+            this.buttonCargar.Location = new System.Drawing.Point(831, 307);
             this.buttonCargar.Name = "buttonCargar";
             this.buttonCargar.Size = new System.Drawing.Size(155, 36);
             this.buttonCargar.TabIndex = 15;
@@ -177,13 +178,23 @@
             this.dataGridView3.RowTemplate.Height = 24;
             this.dataGridView3.Size = new System.Drawing.Size(316, 209);
             this.dataGridView3.TabIndex = 17;
-
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(457, 559);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(201, 36);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Informacion Alquileres";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1041, 730);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.buttonIngresar);
             this.Controls.Add(this.buttonCargar);
@@ -225,6 +236,7 @@
         private System.Windows.Forms.Button buttonCargar;
         private System.Windows.Forms.Button buttonIngresar;
         private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Button button1;
     }
 }
 

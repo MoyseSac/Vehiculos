@@ -51,9 +51,9 @@ namespace Vehiculos
             {
                 Alquileres alquiler = new Alquileres();
                 alquiler.Nit = Convert.ToInt32(reader.ReadLine());
+                alquiler.Placa = reader.ReadLine();
                 alquiler.FechaDev = reader.ReadLine();
                 alquiler.FechAlq = reader.ReadLine();
-                alquiler.Placa= reader.ReadLine();
                 alquiler.KilRecorridos=Convert.ToInt16(reader.ReadLine());
 
                 alquileres.Add(alquiler);
@@ -87,29 +87,11 @@ namespace Vehiculos
             CargarDatos();
             CargarClientes();
             CargarAlquileres();
-            foreach (Alquileres alquiler in alquileres) {
-
-                Clientes cliente = clientes.FirstOrDefault(C=>C.Nit==alquiler.Nit);
-                if (cliente != null) {
-                    Datos dato = datos.FirstOrDefault(V => V.Placa == alquiler.Placa);
-                    if (dato != null) { 
-                        Informacion informaciones = new Informacion();
-                        informaciones.Nombre=cliente.Nombre;
-                        informaciones.Placa=dato.Placa;
-                        informaciones.Marca=dato.Marca;
-                        informaciones.Modelo=dato.Modelo;
-                        informaciones.Color=dato.Color;
-                        informaciones.PrecioKilo = dato.PrecioKilo;
-                        informaciones.FechaDev=alquiler.FechaDev;
-                        informaciones.Total = (dato.PrecioKilo * alquiler.KilRecorridos);
-
-                        informacions.Add(informaciones);
-                    }
-                }
-            }
             mostrarClientes();
-            mostrarInfo();
             mostrarVehiculos();
+            datos.Clear();
+            clientes.Clear();
+
         }
 
         private void Guardar(string fileName)
@@ -137,7 +119,7 @@ namespace Vehiculos
             nuevo.Modelo= textModelo.Text;
             nuevo.Color = textColor.Text;
             nuevo.Marca = textMarca.Text;
-            nuevo.PrecioKilo = Convert.ToInt16(textRecorrido.Text);
+            nuevo.PrecioKilo = Convert.ToDecimal(textRecorrido.Text);
             datos.Add(nuevo);
             Guardar("Datos.txt");
             mostrarVehiculos();
@@ -165,6 +147,40 @@ namespace Vehiculos
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
 
+        {
+           
+            CargarClientes();
+            CargarDatos();
+            CargarAlquileres();
+            if (informacions.Count == 0)
+            {
+                foreach (Alquileres alquiler in alquileres)
+                {
+
+                    Clientes cliente = clientes.FirstOrDefault(C => C.Nit == alquiler.Nit);
+                    if (cliente != null)
+                    {
+                        Datos dato = datos.FirstOrDefault(V => V.Placa == alquiler.Placa);
+                        if (dato != null)
+                        {
+                            Informacion informaciones = new Informacion();
+                            informaciones.Nombre = cliente.Nombre;
+                            informaciones.Placa = dato.Placa;
+                            informaciones.Marca = dato.Marca;
+                            informaciones.Modelo = dato.Modelo;
+                            informaciones.Color = dato.Color;
+                            informaciones.PrecioKilo = dato.PrecioKilo;
+                            informaciones.FechaDev = alquiler.FechaDev;
+                            informaciones.Total = (dato.PrecioKilo * alquiler.KilRecorridos);
+
+                            informacions.Add(informaciones);
+                        }
+                    }
+                }
+                mostrarInfo();
+            }
+        }
     }
 }
